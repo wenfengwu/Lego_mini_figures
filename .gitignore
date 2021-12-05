@@ -1,0 +1,6 @@
+venv
+migrations
+*.pyc
+.python-version
+.DS_Store
+ga.html

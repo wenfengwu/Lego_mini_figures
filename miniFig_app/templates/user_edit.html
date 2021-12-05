@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Information{% endblock %} 
+
+{% block body %}
+<h1 class="p-4 text-center">Edit Your Information</h1>
+<div class="d-flex justify-content-around">
+<form action="" method="post" class="col-4 p-4 bg-secondary text-light">
+    {{ form.hidden_tag() }}
+    <p>
+      {{ form.username.label }}<br />
+      {{ form.username(size=32) }}<br />
+      {% for error in form.username.errors %}
+      <span style="color: red">[{{ error }}]</span>
+      {% endfor %}
+    </p>
+    <p>
+      {{ form.email.label }}<br />
+      {{ form.email(size=32) }}<br />
+      {% for error in form.email.errors %}
+      <span style="color: red">[{{ error }}]</span>
+      {% endfor %}
+    </p>
+    <p>{{ form.submit() }}</p>
+  </form>
+</div>
+
+{% endblock %}

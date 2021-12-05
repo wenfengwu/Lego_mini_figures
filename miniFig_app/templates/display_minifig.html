@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %}Browse All MiniFigs{% endblock %}
+{%block body %}
+<div style="margin-left: 90px;">
+    <h3>MiniFig Details</h3>
+    <div class="card mb-3 on-sale" style="max-width: 540px;">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="{{detailed_fig.img_url}}" alt="fig image" width="180" height="220">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title" style="color: black;">ID: {{detailed_fig.id}}</h5>
+                    <p class="card-text">
+                    <p><b>Name</b>: {{detailed_fig.name}}</p>
+                    <p><b>Theme</b>: {{detailed_fig.theme}}</p>
+                    <p><b>Year Released</b>: {{detailed_fig.year}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sort-by-price">
+        <label for="sort_by_price">Sort by price</label>
+        <select name="sort_by_price" id="sort_by_price">
+            <option>Item Post</option>
+            <option>Price Low to High</option>
+            <option>Price High to Low</option>
+        </select>
+    </div>
+
+    <h4 style="margin-top: 20px;"><b>Blind Box</b></h4>
+    {% for box in blindbox %}
+    <img src="{{box.figure.img_url}}" width="180" height="200">
+    <br>
+    <br>
+    <h6>Quantity: {{box.quantity}}</h6>
+    <h6>Price: {{box.sell_price}}</h6>
+    <form action="/add_to_cart/{{box.figure_id}}" method="post">
+        {{ form.csrf_token }}
+        {{ form.sell_fig_id(value=box.id) }}
+        <p>
+            {{ form.fig_quantity.label }}<br />
+            {{ form.fig_quantity(size=16) }}<br />
+            {% for error in form.fig_quantity.errors %}
+            <span style="color: red">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <button style="margin-bottom: 10px;" class="btn btn-primary">Add to Cart</button>
+    </form>
+    {% endfor %}
+    <br>
+    <br>
+    {% if sell_info %}
+    {% for seller in sell_info %}
+    {% if seller.figure_id != "BLINDBOX" %}
+    <h6>Sell User Id: {{seller.user_id}}</h6>
+    <h6>Quantity: {{seller.quantity}}</h6>
+    <h6>Price: {{seller.sell_price}}</h6>
+    <form action="/add_to_cart/{{seller.figure_id}}" method="post">
+        {{ form.csrf_token }}
+        {{ form.sell_fig_id(value=seller.id) }}
+        <p>
+            {{ form.fig_quantity.label }}<br />
+            {{ form.fig_quantity(size=16) }}<br />
+            {% for error in form.fig_quantity.errors %}
+            <span style="color: red">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <button style="margin-bottom: 10px;" class="btn btn-primary">Add to Cart</button>
+    </form>
+    {% endif %}
+    {% endfor %}
+    {% else %}
+    <h4>This Item is not available for now.</h4>
+
+    {% endif %}
+
+    <br>
+    <br>
+    {#
+    <div class="container">
+        <h3>Appears in Set</h3>
+        <img src="" alt="">
+
+    </div>
+    #}
+
+</div>
+
+{% endblock %}

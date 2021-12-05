@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}Post to Sell{% endblock %} 
+
+{% block body %}
+
+<h1 class="p-4 text-center">Sell Your MiniFigs</h1>
+<div class="d-flex justify-content-around">
+<form action="" method="post" class="col-4 p-4 bg-secondary text-light">
+    {{ form.hidden_tag() }}
+{# <p>
+        {{ form.image.label }}<br />
+        {{ form.image(size=96) }}<br />
+        {% for error in form.image.errors %}
+        <span style="color: red">[{{ error }}]</span>
+        {% endfor %}
+    </p> #}
+    <p>
+        {{ form.fig_id.label }}<br />
+        {{ form.fig_id(size=32) }}<br />
+        {% for error in form.fig_id.errors %}
+        <span style="color: red">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.fig_name.label }}<br />
+        {{ form.fig_name(size=32) }}<br />
+        {% for error in form.fig_name.errors %}
+        <span style="color: red">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    {#
+    <p>
+        {{ form.fig_theme.label }}<br />
+        {{ form.fig_theme(size=32) }}<br />
+        {% for error in form.fig_theme.errors %}
+        <span style="color: red">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.fig_year.label }}<br />
+        {{ form.fig_year(size=1) }}<br />
+        {% for error in form.fig_year.errors %}
+        <span style="color: red">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    #}
+    <p>
+        {{ form.fig_quantity.label }}<br />
+        {{ form.fig_quantity(size=16) }}<br />
+        {% for error in form.fig_quantity.errors %}
+        <span style="color: red">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.fig_price.label }}<br />
+        {{ form.fig_price(size=16) }}<br />
+        {% for error in form.fig_price.errors %}
+        <span style="color: red">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>{{ form.submit() }}</p>
+</form>
+</div>
+{% endblock %}
+
+

@@ -1,0 +1,23 @@
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        {% if prev_page %}
+        <li class="page-item">
+            <a href="#" class="page-link" aria-label="Previous" onClick="{{prev_page}}">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        {% endif %}
+
+        {% for page in page_data %}
+        <li class="page-item"><a class="page-link" id="page_number" href="#" onClick="{{page[1]}}">{{page[0]}}</a></li>
+        {% endfor %}
+
+        {% if next_page %}
+        <li class="page-item">
+            <a href="#" class="page-link" aria-label="Next" onClick="{{next_page}}">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>

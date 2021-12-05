@@ -1,0 +1,21 @@
+{% for year in data %}
+<div class="fig-detail">
+    <div class="card mb-3 on-sale" style="max-width: 540px;z-index:0;">
+        <a href="/display_minifig/{{year.id}}" style="text-decoration: none; color: black;">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="{{year.img_url}}" class="card-img" alt="minifigs.img">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title" style="color: black;"><b>Id: </b>{{year.id}}</h5>
+                    <p class="card-text">    
+                        <p><b>year: </b>{{year.year}}</p>
+                        <p><b>Name: </b>{{year.name}}</p>
+                </div>
+            </div>
+        </div>
+        </a>
+    </div>
+    </div>
+{% endfor %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Sell Item{% endblock %} 
+
+{% block body %}
+<h1 class="p-4 text-center">Edit Your Sell Figure</h1>
+<div class="d-flex justify-content-around">
+<form action="" method="post" class="col-4 p-4 bg-secondary text-light">
+    {{ form.hidden_tag() }}
+    <p>
+      {{ form.quantity.label }}<br />
+      {{ form.quantity(size=16) }}<br />
+      {% for error in form.quantity.errors %}
+      <span style="color: red">[{{ error }}]</span>
+      {% endfor %}
+    </p>
+    <p>
+      {{ form.sell_price.label }}<br />
+      {{ form.sell_price(size=16) }}<br />
+      {% for error in form.sell_price.errors %}
+      <span style="color: red">[{{ error }}]</span>
+      {% endfor %}
+    </p>
+    <p>{{ form.submit() }}</p>
+  </form>
+
+{% endblock %}

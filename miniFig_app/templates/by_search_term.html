@@ -1,0 +1,9 @@
+{% for item in data %}
+<div class="search-term" style="padding: 10px;">
+    <a class="link" style=" display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;" href="/display_minifig/{{item.id}}">{{item.name}}</a>
+
+</div>
+{% endfor %}

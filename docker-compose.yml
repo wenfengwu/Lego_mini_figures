@@ -1,0 +1,54 @@
+version: '3.3'
+services:
+  db:
+    # Mysql database image
+    image: mysql:8.0.26
+    restart: always
+    # Mysql database environments to boostrap during startup
+    environment:
+      MYSQL_DATABASE: 'minifigs'
+      MYSQL_USER: 'admin'
+      MYSQL_PASSWORD: 'rootroot'
+      MYSQL_ROOT_PASSWORD: 'rootroot'
+    # Mysql database port
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    # Mysql database data path
+    volumes:
+      - /home/admin/data:/var/lib/mysql
+    deploy:
+    # Mysql resource limits
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+        reservations:
+          cpus: '0.3'
+          memory: 200M
+  app:
+    # Application build image from Dockerfile
+    build: .
+    # Listen Application port on 80
+    ports:
+    - "80:5000"
+    deploy:
+      resources:
+        # Application resource limits
+        limits:
+          cpus: '0.5'
+          memory: 200M
+        reservations:
+          cpus: '0.3'
+          memory: 100M
+    # Application environments
+    environment:
+      MYSQL_HOST: 'db'  # User mysql database host above
+      DATABASE_URL: mysql+pymysql://root:rootroot@db:3306/minifigs
+      MYSQL_PORT: 3306  # User mysql database port above
+      APP_HOST: 0.0.0.0 # Bind application to 0.0.0.0
+      APP_PORT: 5000    # Listen application on port 5000
+      DEBUG: "False"    # Turn off debug on application when running on AWS
+    volumes:
+      - .:/app          # Add app source code to docker

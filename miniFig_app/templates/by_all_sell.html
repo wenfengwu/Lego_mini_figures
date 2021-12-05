@@ -1,0 +1,22 @@
+{% for sale in data %}
+<div class="card mb-3 on-sale" style="max-width: 540px; z-index: 0;">
+    <a href="/display_minifig/{{sale.id}}" style="text-decoration: none; color: black;">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="{{sale.img_url}}" class="card-img" alt="minifigs.img">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title" style="color: black;"><b>Id:</b> {{sale.id}}</h5>
+                    <p class="card-text">
+                    <p><b>Name:</b> {{sale.name}}</p>
+                    <p><b>Year:</b>{{sale.year}}</p>
+                    <p><b> Theme:</b>{{sale.theme}}</p>
+                </div>
+            </div>
+        </div>
+    </a>
+
+</div>
+
+{% endfor %}

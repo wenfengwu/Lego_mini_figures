@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Items In Cart{% endblock %}
+
+{% block body%}
+<div style="margin-left: 90px;">
+    <h3 style="margin: 10px 0px 10px 0;">Items in Cart</h3>
+    {% for item in cart_items %}
+
+    <div class="card mb-3 on-sale" style="max-width: 540px;">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="{{item.sell_fig.figure.img_url}}" alt="fig image" width="180" height="220">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <p class="card-text">
+                    <p><b>Unit Price:</b> $ {{item.sell_fig.sell_price}}</p>
+                    <p><b>Quantity Added:</b> {{item.fig_quantity}}</p>
+                    <p><b>Total Price :</b> $ {{ "%.2f" % (item.sell_fig.sell_price * item.fig_quantity)}} </p>
+                    <p><button class="btn btn-primary">Pay</button></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+{% endblock%}
